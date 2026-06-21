@@ -105,15 +105,14 @@ ${historyText}`;
   return response.text || "I'm routing to human support agent";
 }
 
-// ai_func2 handles image-based food quality analysis
+// ai_func2 handles image-based food quality analysis with the requested prompt structure
 async function ai_func2(query: string, imageBase64: string, mimeType: string, historyText: string): Promise<string> {
   const ai = getGeminiClient();
   const prompt = `You're a helpful assistant of a food service company called food fix,
  please respond to user's query, be courteous.
  Use the following policy document -
  ${policy_document}.
- Check the food quality and if the food quality is bad- food is burnt or there is mould then tell him that refund is being processed and also apologize. If you verify the food packaging, container, or food has other actual corrupt status (ruined, spoiled, completely spilled, damaged delivery), provide refund and apologize.
- Otherwise, if the food is not corrupt (it looks completely normal, not burnt, no mould, no damage) or if you cannot verify any actual damage or bad quality, you must refuse the refund and state that you are escalating/routing this query to a human support agent.
+ Check the food quality and if the food quality is bad- food is burnt or there is mould then tell him that refund is being processed and also apologize
  Here is the query - ${query}.
 Use the following historical conversation -
 ${historyText}`;
